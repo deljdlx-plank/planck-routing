@@ -3,7 +3,7 @@
 namespace Planck\Routing;
 
 use Phi\Routing\Route;
-use Planck\Application;
+use Planck\Application\Application;
 use Planck\Traits\HasLocalResource;
 use Planck\Traits\IsExtensionObject;
 
