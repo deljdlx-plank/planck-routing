@@ -15,6 +15,21 @@ class Route extends \Phi\Routing\Route
 
     protected $descriptor;
 
+
+    public function __construct($verbs = 'get', $validator = false, $callback = null, array $headers = array(), $name = null)
+    {
+        parent::__construct($verbs, $validator, $callback, $headers, $name);
+
+        $this->afterHook = function() {
+            $redirection = $this->request->get('redirect');
+           if($redirection && !$this->request->data('no-redirection')) {
+               $this->redirect($redirection);
+           }
+        };
+
+    }
+
+
     public function setDescriptor(RouteDescriptor $descriptor)
     {
         $this->descriptor = $descriptor;
@@ -36,6 +51,7 @@ class Route extends \Phi\Routing\Route
 
         return false;
     }
+
 
 
 }

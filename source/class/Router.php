@@ -49,6 +49,12 @@ class Router extends \Phi\Routing\Router
 
         $route = parent::addRoute($planckRoute, $name);
 
+
+
+
+
+
+
         return $route;
     }
 
