@@ -15,6 +15,11 @@ class Route extends \Phi\Routing\Route
 
     protected $descriptor;
 
+    /**
+     * @var Router
+     */
+    protected $router;
+
 
     public function __construct($verbs = 'get', $validator = false, $callback = null, array $headers = array(), $name = null)
     {
@@ -27,6 +32,14 @@ class Route extends \Phi\Routing\Route
            }
         };
 
+    }
+
+    /**
+     * @return Router
+     */
+    public function getRouter()
+    {
+        return parent::getRouter();
     }
 
 
