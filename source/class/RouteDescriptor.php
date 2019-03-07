@@ -49,9 +49,33 @@ class RouteDescriptor implements \JsonSerializable
         }
 
 
+        $routeValidator = $this->route->getValidator();
+        if(is_string($routeValidator)) {
+            $validator = array(
+                'type' => 'regexp',
+                'value' => $this->route->getValidator()
+            );
+        }
+        else if($routeValidator instanceof \Closure) {
+            $validator = array(
+                'type' => 'closure'
+            );
+        }
+        else if(is_bool($routeValidator)){
+            $validator = array(
+                'type' => 'bool',
+                'value' => $routeValidator
+            );
+        }
+        else {
+            $validator = null;
+        }
+
+
 
         return array(
             'label' => $this->label,
+            'validator' => $validator,
             'description' => $this->description,
             'builders' => $builderDescriptors,
         );
