@@ -73,8 +73,16 @@ class RouteDescriptor implements \JsonSerializable
 
 
 
+        $routerDescriptor = null;
+        if($router = $this->route->getRouter()) {
+            $routerDescriptor = array(
+               'class' => get_class($router),
+            );
+        }
         return array(
             'label' => $this->label,
+            'router' => $routerDescriptor,
+            'verbs' => $this->route->getVerbs(),
             'validator' => $validator,
             'description' => $this->description,
             'builders' => $builderDescriptors,
